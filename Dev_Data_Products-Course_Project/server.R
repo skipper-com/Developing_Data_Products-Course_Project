@@ -15,23 +15,27 @@ shinyServer(function(input, output, session) {
     }
   })
   
+  output$date <- renderText({
+    as.character(Sys.Date())
+  })
+  
   output$cyl <- renderPrint({
     as.factor(input$cyl)
   })
   
-  output$observations <- renderPrint({
+  output$observations <- renderText({
     mtcars_disped <- mtcars[mtcars$disp > input$disp[1] & mtcars$disp < input$disp[2],]
-    dim(mtcars_disped)[1]
+    paste("Number of observations: ", dim(mtcars_disped)[1])
   })
   
   output$disp_range <- renderUI({
     numericInput(inputId = 'disp_val', label = 'disp value to predict mpg', value = input$disp[1], min = input$disp[1], max = input$disp[2])
   })
   
-  output$predict <- renderPrint({
+  output$predict <- renderText({
     mtcars_disped <- mtcars[mtcars$disp > input$disp[1] & mtcars$disp < input$disp[2],]
     fitmod <- lm(mpg ~ disp + cyl + wt + am, data = mtcars_disped)
     pred_data <- data.frame(disp = input$disp_val, cyl = 6, wt = 2.5, am = 1)
-    predict(fitmod, newdata = pred_data)
+    paste("Predicted mpg: ", predict(fitmod, newdata = pred_data))
   })
 })
