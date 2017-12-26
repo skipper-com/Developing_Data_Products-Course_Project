@@ -1,0 +1,12 @@
+name: Dev_Data_Products-Course_Project
+title: Dev_Data_Products-Course_Project
+username:
+account: skipper-com
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 251576
+bundleId: 1150396
+url: https://skipper-com.shinyapps.io/Dev_Data_Products-Course_Project/
+when: 1514233989.70104
+asMultiple: FALSE
+asStatic: FALSE
