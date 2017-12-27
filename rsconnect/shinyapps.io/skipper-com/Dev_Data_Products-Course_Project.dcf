@@ -5,8 +5,9 @@ account: skipper-com
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 251576
-bundleId: 1151387
+bundleId: 1151453
 url: https://skipper-com.shinyapps.io/Dev_Data_Products-Course_Project/
-when: 1514324595.72734
+when: 1514327751.30083
 asMultiple: FALSE
 asStatic: FALSE
+ignoredFiles: index.html|index.md|index.Rpres|index-figure/unnamed-chunk-2-1.png|index-figure/unnamed-chunk-3-1.png|index-figure/unnamed-chunk-4-1.png

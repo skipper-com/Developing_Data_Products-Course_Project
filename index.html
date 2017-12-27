@@ -547,7 +547,7 @@ body {
 
 
 .reveal {
-  font-family: "Lato", sans-serif;
+  font-family: 'Calibri', 'Times New Roman', 'Helvetica', sans-serif;
 }
   
 .reveal h1,
@@ -556,7 +556,7 @@ body {
 .reveal h4,
 .reveal h5,
 .reveal h6 {
-  font-family: "News Cycle", Impact, sans-serif;
+  font-family: 'Calibri', 'Times New Roman', 'Helvetica', Impact, sans-serif;
 }
 
 
@@ -783,7 +783,7 @@ hljs.initHighlightingOnLoad();
   <div class="reveal">
   <div class="slides">
 
-<section data-state="section" data-transition="linear" data-transition-speed="default">
+<section data-state="section" data-transition="fade" data-transition-speed="default">
 <h1>App Presentation</h1><p>Alex Pilugin<br/>27.12.2017</p>
 
 <div class="slideContent" >
@@ -791,67 +791,67 @@ hljs.initHighlightingOnLoad();
 </div>
 
 </section>
-<section data-transition="linear" data-transition-speed="default">
+<section data-transition="fade" data-transition-speed="default">
 <h3>Overview</h3>
 <div class="slideContent" >
 <p>Using shiny app you can get from mtcars dataset:</p>
 
 <ul>
-<li>Plots of Miles per Gallon dependence on Weight considering variable Cylinders</li>
-<li>Prediction of Miles per Gallon using Cylinders, Weight, Transmiision Type and Displacement on limited dataset. Limits controlled by user and applied to Displacement values.</li>
-<li>A lot of fun:)</li>
+<li class="fragment">Plots of Miles per Gallon dependence on Weight considering variable Cylinders</li>
+<li class="fragment">Prediction of Miles per Gallon using Cylinders, Weight, Transmission Type and Displacement on limited dataset. Limits controlled by user and applied to Displacement values.</li>
+<li class="fragment">A lot of fun:)</li>
 </ul>
 
 </div>
 
 </section>
-<section data-transition="linear" data-transition-speed="default">
+<section data-transition="fade" data-transition-speed="default">
 <h3>mtcars plots</h3>
 <div class="slideContent" >
 <p>The plots are constructed using basic ggplot library with the following code:</p>
 
-<pre><code class="r">  g &lt;- ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+<pre><code class="r">g &lt;- ggplot(data = mtcars, aes(x = wt, y = mpg)) +
     geom_point(aes(color = as.factor(cyl))) +
     geom_smooth(method = &quot;lm&quot;) +
     facet_wrap(~ cyl)
 </code></pre>
 
-<p>where cyl variable is taken from user checkbox input.</p>
+<p>where cyl variable is taken from user check box input.</p>
 
 </div>
 
 </section>
-<section data-transition="linear" data-transition-speed="default">
+<section data-transition="fade" data-transition-speed="default">
 <h3>mtcars predict (Part 1)</h3>
 <div class="slideContent" >
 <p>Prediction consists of two parts:</p>
 
 <ul>
-<li>subsetting mtcars data set for defined Displacement range (by slider)</li>
+<li>sub-setting mtcars data set for defined Displacement range (by slider)</li>
 <li>predict using limited dataset value of Miles per Gallon using defined Displacement value
 To subset mtcars dataset slider input (min, max) values were used with following code:</li>
 </ul>
 
-<pre><code class="r">  mtcars_disped &lt;- mtcars[mtcars$disp &gt; input$disp[1] &amp; mtcars$disp &lt; input$disp[2],]
-  paste(&quot;Number of observations: &quot;, dim(mtcars_disped)[1])
+<pre><code class="r">mtcars_disped &lt;- mtcars[mtcars$disp &gt; input$disp[1] &amp; mtcars$disp &lt; input$disp[2],]
+paste(&quot;Number of observations: &quot;, dim(mtcars_disped)[1])
 </code></pre>
 
-<p>To user GUI (ui.R) is neccessary to return new Displacement range, what was done using the following code:</p>
+<p>To user GUI (ui.R) is necessary to return new Displacement range, what was done using the following code:</p>
 
-<pre><code class="r">  numericInput(inputId = &#39;disp_val&#39;, label = &#39;disp value to predict mpg&#39;, value = input$disp[1], min = input$disp[1], max = input$disp[2])
+<pre><code class="r">numericInput(inputId = &#39;disp_val&#39;, label = &#39;disp value to predict mpg&#39;, value = input$disp[1], min = input$disp[1], max = input$disp[2])
 </code></pre>
 
 </div>
 
 </section>
-<section data-transition="linear" data-transition-speed="default">
+<section data-transition="fade" data-transition-speed="default">
 <h3>mtcars predict (Part 2)</h3>
 <div class="slideContent" >
-<p>Simple prediction using Linear Model was done with fixed Cylinders, Weught and Transmission Type. Displacement value is defined by user input. Following code provide overview of server.R code for the shiny app in that part.</p>
+<p>Simple prediction using Linear Model was done with fixed Cylinders, Weight and Transmission Type. Displacement value is defined by user input. Following code provide overview of server.R code for the shiny app in that part.</p>
 
-<pre><code class="r">    fitmod &lt;- lm(mpg ~ disp + cyl + wt + am, data = mtcars_disped)
-    pred_data &lt;- data.frame(disp = input$disp_val, cyl = 6, wt = 2.5, am = 1)
-    paste(&quot;Predicted mpg: &quot;, predict(fitmod, newdata = pred_data))
+<pre><code class="r">fitmod &lt;- lm(mpg ~ disp + cyl + wt + am, data = mtcars_disped)
+pred_data &lt;- data.frame(disp = input$disp_val, cyl = 6, wt = 2.5, am = 1)
+paste(&quot;Predicted mpg: &quot;, predict(fitmod, newdata = pred_data))
 </code></pre>
 
 </div>
@@ -908,7 +908,7 @@ function commandsForSlide(indexh) {
       rollingLinks: false,
       
       theme: 'simple', 
-      transition: 'linear',
+      transition: 'fade',
       transitionSpeed: 'default',
       rtl: false,
       width: 960,
