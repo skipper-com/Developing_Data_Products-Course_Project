@@ -6,6 +6,8 @@ autosize: true
 transition: fade
 navigation: slide
 font-family: 'Calibri', 'Times New Roman', 'Helvetica'
+width: 1920
+height: 1080
 
 Overview
 ========================================================
