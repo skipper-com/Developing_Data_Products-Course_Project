@@ -12,6 +12,11 @@ shinyServer(function(input, output, session) {
         geom_smooth(method = "lm") +
         facet_wrap(~ cyl)
       g
+    } else {
+    g <- ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+        geom_point(aes(color = as.factor(cyl))) +
+        geom_smooth(method = "lm") 
+    g
     }
   })
   
@@ -35,7 +40,7 @@ shinyServer(function(input, output, session) {
   output$predict <- renderText({
     mtcars_disped <- mtcars[mtcars$disp > input$disp[1] & mtcars$disp < input$disp[2],]
     fitmod <- lm(mpg ~ disp + cyl + wt + am, data = mtcars_disped)
-    pred_data <- data.frame(disp = input$disp_val, cyl = 6, wt = 2.5, am = 1)
+    pred_data <- data.frame(disp = input$disp_val, cyl = 6, wt = 2.5, am = 0)
     paste("Predicted mpg: ", predict(fitmod, newdata = pred_data))
   })
 })
