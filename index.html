@@ -810,10 +810,19 @@ hljs.initHighlightingOnLoad();
 <div class="slideContent" >
 <p>The plots are constructed using basic ggplot library with the following code:</p>
 
-<pre><code class="r">g &lt;- ggplot(data = mtcars, aes(x = wt, y = mpg)) +
-    geom_point(aes(color = as.factor(cyl))) +
-    geom_smooth(method = &quot;lm&quot;) +
-    facet_wrap(~ cyl)
+<pre><code class="r">if (!is.null(input$cyl)) {
+    mtcars_cyled &lt;- mtcars[mtcars$cyl %in% input$cyl, ]
+    g &lt;- ggplot(data = mtcars_cyled, aes(x = wt, y = mpg)) +
+        geom_point(aes(color = as.factor(cyl))) +
+        geom_smooth(method = &quot;lm&quot;) +
+        facet_wrap(~ cyl)
+    g
+} else {
+    g &lt;- ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+        geom_point(aes(color = as.factor(cyl))) +
+        geom_smooth(method = &quot;lm&quot;) 
+    g
+}
 </code></pre>
 
 <p>where cyl variable is taken from user check box input.</p>

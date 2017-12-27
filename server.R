@@ -4,21 +4,21 @@ library(ggplot2)
 # Define server logic required to draw and predict
 shinyServer(function(input, output, session) {
    
-  output$mpgPlot <- renderPlot({
+output$mpgPlot <- renderPlot({
     if (!is.null(input$cyl)) {
-    mtcars_cyled <- mtcars[mtcars$cyl %in% input$cyl, ]
-      g <- ggplot(data = mtcars_cyled, aes(x = wt, y = mpg)) +
-        geom_point(aes(color = as.factor(cyl))) +
-        geom_smooth(method = "lm") +
-        facet_wrap(~ cyl)
-      g
+        mtcars_cyled <- mtcars[mtcars$cyl %in% input$cyl, ]
+        g <- ggplot(data = mtcars_cyled, aes(x = wt, y = mpg)) +
+            geom_point(aes(color = as.factor(cyl))) +
+            geom_smooth(method = "lm") +
+            facet_wrap(~ cyl)
+        g
     } else {
-    g <- ggplot(data = mtcars, aes(x = wt, y = mpg)) +
-        geom_point(aes(color = as.factor(cyl))) +
-        geom_smooth(method = "lm") 
-    g
+        g <- ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+            geom_point(aes(color = as.factor(cyl))) +
+            geom_smooth(method = "lm") 
+        g
     }
-  })
+})
   
   output$date <- renderText({
     as.character(Sys.Date())

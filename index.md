@@ -22,10 +22,19 @@ mtcars plots
 The plots are constructed using basic ggplot library with the following code:
 
 ```r
-g <- ggplot(data = mtcars, aes(x = wt, y = mpg)) +
-    geom_point(aes(color = as.factor(cyl))) +
-    geom_smooth(method = "lm") +
-    facet_wrap(~ cyl)
+if (!is.null(input$cyl)) {
+    mtcars_cyled <- mtcars[mtcars$cyl %in% input$cyl, ]
+    g <- ggplot(data = mtcars_cyled, aes(x = wt, y = mpg)) +
+        geom_point(aes(color = as.factor(cyl))) +
+        geom_smooth(method = "lm") +
+        facet_wrap(~ cyl)
+    g
+} else {
+    g <- ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+        geom_point(aes(color = as.factor(cyl))) +
+        geom_smooth(method = "lm") 
+    g
+}
 ```
 where cyl variable is taken from user check box input.
 
